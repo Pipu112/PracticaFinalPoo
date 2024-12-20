@@ -3,18 +3,14 @@ package Menu;
 import Modelo.Concesionario;
 import Modelo.GestionableIdString;
 import Modelo.IdString;
+import Modelo.Seccion;
 
 import java.util.ArrayList;
 
 public class MenuGSecciones extends Menu{
-    private int criterio;
-    private ArrayList<String> texto;
-    private FactoryIdStringC f;
-    public MenuGSecciones(Concesionario c, int criterio, ArrayList<String> texto, FactoryIdStringC f) {
+
+    public MenuGSecciones(Concesionario c) {
         super(c);
-        this.texto = texto;
-        this.criterio = criterio;
-        this.f = f;
     }
     public IdString recuperarIdSR(GestionableIdString g, String id){
         return  g.buscar(id);
@@ -25,12 +21,13 @@ public class MenuGSecciones extends Menu{
 
     public void agregar(GestionableIdString g){
         String id=solicitarInfoS("la id de la seccion"); //pone en total Introduzca la seccion
-        String descripcion = solicitarInfoS("la descripcion de la seccion");
         IdString o= recuperarIdSR(g, id);
         if (o==null){
-            o=f.factory(criterio,id);
-            g.alta(o);}
-        else System.out.println("Ya existe "+texto.get(0)+" con ese "+texto.get(1));
+            String descripcion = solicitarInfoS("la descripcion de la seccion");
+            IdString s = new Seccion(id, descripcion);
+            g.alta(s);
+        }
+        else System.out.println("Ya existe una seccion con ese id");
     }
 
     public void mostrar(GestionableIdString g){
@@ -43,7 +40,7 @@ public class MenuGSecciones extends Menu{
 
     @Override
     public void mostrarOpcion() {
-        System.out.println("1. Gestion de opciones ");
+        System.out.println("1. Gestion de opciones de Seccion ");
     }
     public void eliminar(GestionableIdString g){
         String id=solicitarInfoS("El id que desea eliminar ");
@@ -68,7 +65,7 @@ public class MenuGSecciones extends Menu{
                 return "n";
             }
             case "1": {
-                agregar((GestionableIdString) getGestionable(criterio));
+                agregar((GestionableIdString) getGestionable(0));
                 return "s";
             }
             case "2": {
@@ -76,7 +73,7 @@ public class MenuGSecciones extends Menu{
 
             }
             case "3": {
-                mostrar((GestionableIdString) getGestionable(criterio));
+                mostrar((GestionableIdString) getGestionable(0));
                 return "s";
             }
         } return "";
