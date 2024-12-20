@@ -5,9 +5,13 @@ import java.util.ArrayList;
 public class Seccion implements IdString{
     private String id;
     private String descripcionSeccion;
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ArrayList<Producto> productos;
 
-    public Seccion(String id, String descripcionSeccion) {}
+    public Seccion(String id, String descripcionSeccion) {
+        this.id = id;
+        this.descripcionSeccion = descripcionSeccion;
+        productos = new ArrayList<>();
+    }
     @Override
     public String getID() {
         return "El Id es: "+id;
@@ -17,21 +21,6 @@ public class Seccion implements IdString{
     public String getInfo() {
         return "El Id es: "+id+" la descripcion de la seccion es: "+descripcionSeccion;
     }
-    public void altaCoche(Coche coche){
-        productos.add(coche);
-    }
-    public Producto buscarCoche(){
-        for(Producto c: productos){
-            if(c.getID().equals(id)){
-                return c;
-            }
-        }
-        return null;
-    }
-    public void mostrarTodosLosProductos(){
-        for(Producto c: productos){
-            System.out.println(c);
-        }
-    }
+
 
 }

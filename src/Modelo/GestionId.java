@@ -17,6 +17,7 @@ public class GestionId implements GestionableIdString {
     }
 
     public IdString buscar(String id){
+        if(lista == null){return null;}
         for(IdString c: lista){
             if(c.getID().equals(id)){
                 return c;

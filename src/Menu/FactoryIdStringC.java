@@ -3,7 +3,7 @@ package Menu;
 import EntradaSalida.MyInput;
 import Modelo.*;
 
-public class FactoryIdStringC implements FactoryIdString{
+public class FactoryIdStringC {
     public String solicitarInfoS(String cad){
         System.out.println("Introduzca "+ cad);
         return MyInput.readString();

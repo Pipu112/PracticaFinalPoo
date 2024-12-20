@@ -12,19 +12,15 @@ public class MenuGSecciones extends Menu{
     public MenuGSecciones(Concesionario c) {
         super(c);
     }
-    public IdString recuperarIdSR(GestionableIdString g, String id){
-        return  g.buscar(id);
-    }
-    public IdString recuperarIdSR(GestionableIdString g,  int i){
-        return  g.recuperar(i);
-    }
+    public IdString recuperarIdSR(GestionableIdString g, String id){return g.buscar(id);}
+    public IdString recuperarIdSR(GestionableIdString g,  int i){return  g.recuperar(i);}
 
     public void agregar(GestionableIdString g){
         String id=solicitarInfoS("la id de la seccion"); //pone en total Introduzca la seccion
         IdString o= recuperarIdSR(g, id);
         if (o==null){
             String descripcion = solicitarInfoS("la descripcion de la seccion");
-            IdString s = new Seccion(id, descripcion);
+            Seccion s = new Seccion(id, descripcion);
             g.alta(s);
         }
         else System.out.println("Ya existe una seccion con ese id");

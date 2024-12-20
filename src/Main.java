@@ -1,30 +1,27 @@
+import EntradaSalida.MyInput;
+import Menu.MenuGSecciones;
+import Menu.MenuPrincipal;
 import Modelo.Cliente;
 import Modelo.Coche;
 import Mejoras.LlantasAleaccion;
+import Modelo.Concesionario;
 import Modelo.Producto;
-
+import Modelo.GestionId;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Coche coche = new Coche("yaris-2008",25000,25);
-        coche.getCoste();
-        System.out.println(coche.getID());
-        coche.getInfo();
 
-        Coche coche2 = new Coche("yaris-2008",1000,25);
-        Coche cochecambiado = new LlantasAleaccion(coche2,0.05);
-        System.out.println(cochecambiado.getCoste());
-        System.out.println(cochecambiado.getInfo());
-        cochecambiado = new LlantasAleaccion(cochecambiado, 0.05);
-        System.out.println(cochecambiado.getCoste());
-        System.out.println(cochecambiado.getInfo());
+        Concesionario c = new Concesionario();
+        for(int i=0;i<3;i++)
+            c.agregarGestionable(new GestionId());
 
-
-        Cliente cliente = new Cliente("560A","Benito Perez", "760","s");
-        System.out.println(cliente.getInfo());
-
-        Producto producto;
-        producto = new Producto("hola",345,233);
+        MenuPrincipal mp= new MenuPrincipal(c);
+        mp.agregarMenu(new MenuGSecciones(c));
+        //mp.agregarMenu(new MenuGestionIdStringReserva(c, 1, MyInput.leeFichero("textoGCliente.txt"), new FactoryIdStringReserva()));
+        //mp.agregarMenu(new MenuGestionReserva(c));
+        //mp.agregarMenu(new MenuGestionEconomica(c));
+        mp.ejecutar();
+        //MyInput.serialize(h, "fichero.dat");
     }
 }
