@@ -15,14 +15,7 @@ public class GestionId implements GestionableIdString {
     public void baja(IdString a){
         lista.remove(a);
     }
-    public void mostrarTodos(){
-        for(int i=0; i<lista.size(); i++){
-            System.out.println(lista.get(i));
-        }
-    }
 
-
-    //a partir de aqui no haría falta
     public IdString buscar(String id){
         for(IdString c: lista){
             if(c.getID().equals(id)){
