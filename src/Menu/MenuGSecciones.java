@@ -26,6 +26,21 @@ public class MenuGSecciones extends Menu{
         else System.out.println("Ya existe una seccion con ese id");
     }
 
+    public void bajaSeccion(GestionableIdString g,String id){
+        IdString o= recuperarIdSR(g, id);
+        System.out.println(o);
+        if(o != null){
+            g.baja(o);
+        }
+        else{
+            System.out.println("No se ha podido dar de baja esa seccion ya que no existe");
+        }
+    }
+    public void eliminar(GestionableIdString g){
+        String id=solicitarInfoS("El id que desea eliminar ");
+        bajaSeccion(g, id);
+    }
+
     public void mostrar(GestionableIdString g){
         IdString c;
         for(int i = 0; i< g.numeroElementos(); i++){
@@ -37,10 +52,6 @@ public class MenuGSecciones extends Menu{
     @Override
     public void mostrarOpcion() {
         System.out.println("1. Gestion de opciones de Seccion ");
-    }
-    public void eliminar(GestionableIdString g){
-        String id=solicitarInfoS("El id que desea eliminar ");
-
     }
 
     @Override
@@ -66,7 +77,8 @@ public class MenuGSecciones extends Menu{
             }
             case "2": {
                 //dar de baja
-
+                eliminar((GestionableIdString) getGestionable(0));
+                return "s";
             }
             case "3": {
                 mostrar((GestionableIdString) getGestionable(0));

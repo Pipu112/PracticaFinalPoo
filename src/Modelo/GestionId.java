@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class GestionId implements GestionableIdString {
     private ArrayList<IdString> lista;
-    public void GestionListaIdStringReserva(){
+
+    public GestionId(){
         lista = new ArrayList<IdString>();
     }
 

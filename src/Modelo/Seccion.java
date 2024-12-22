@@ -19,7 +19,7 @@ public class Seccion implements IdString{
 
     @Override
     public String getInfo() {
-        return "El Id es: "+id+" la descripcion de la seccion es: "+descripcionSeccion;
+        return "El Id es: "+id+"\nLa descripcion de la seccion es: "+descripcionSeccion;
     }
 
 
