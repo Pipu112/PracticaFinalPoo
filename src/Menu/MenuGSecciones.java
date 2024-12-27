@@ -28,7 +28,7 @@ public class MenuGSecciones extends Menu{
 
     public void bajaSeccion(GestionableIdString g,String id){
         IdString o= recuperarIdSR(g, id);
-        System.out.println(o);
+        //no funciona que te devuelva la seccion
         if(o != null){
             g.baja(o);
         }
@@ -73,6 +73,7 @@ public class MenuGSecciones extends Menu{
             }
             case "1": {
                 agregar((GestionableIdString) getGestionable(0));
+
                 return "s";
             }
             case "2": {
@@ -85,6 +86,12 @@ public class MenuGSecciones extends Menu{
                 return "s";
             }
         } return "";
+    }
+    public void agregarCoche(){
+        String res = solicitarInfoS("si desea entrar en el menú de coches para gestionar los coches de esta seccion");
+        if (res == "s"){
+
+        }
     }
 
 }

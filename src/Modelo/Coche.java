@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Coche extends Producto{
+public class Coche extends Producto implements IdString{
     private String modelo;
     private int annoFabricacion;
     public Coche(String id, double PrecioBase, Integer Stock) {
@@ -24,4 +24,5 @@ public class Coche extends Producto{
     public double getCosteBase(){
         return super.getCoste();
     }
+
 }

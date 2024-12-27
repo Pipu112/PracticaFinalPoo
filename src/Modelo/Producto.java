@@ -33,4 +33,7 @@ public class Producto implements IdString{
     public double getCoste(){
         return PrecioBase;
     }
+    public void aumentarStock(Integer i){
+        Stock += i;
+    }
 }
