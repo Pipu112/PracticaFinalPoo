@@ -10,7 +10,7 @@ public abstract class Venta implements IdString{
     public Venta(String id, String datosProducto, String dniCliente) {}
     @Override
     public String getID() {
-        return "El ID del venta es " + id;
+        return id;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Producto implements IdString{
 
     @Override
     public String getID() {
-        return "Tiene un id : " + id;
+        return id;
     }
 
     @Override

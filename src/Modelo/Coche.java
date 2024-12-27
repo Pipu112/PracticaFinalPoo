@@ -14,7 +14,7 @@ public class Coche extends Producto implements IdString{
 
     @Override
     public String getID() {
-        return "El coche "+super.getID();
+        return super.getID();
     }
 
     @Override

@@ -5,7 +5,7 @@ import Modelo.Producto;
 
 import java.util.ArrayList;
 
-public class MenuGCoches extends Menu{
+public class MenuGCoches extends MenuPrincipal{
     Seccion seccion;
 
     public MenuGCoches(Concesionario c){
@@ -54,7 +54,6 @@ public class MenuGCoches extends Menu{
 
     @Override
     public void mostrarOpciones() {
-        seccion = buscarSeccion();
         System.out.println("Menu de gestion de Coches: ");
         System.out.println("0. Volver al Menú Principal");
         System.out.println("1. Alta de coche");
@@ -65,7 +64,7 @@ public class MenuGCoches extends Menu{
 
     @Override
     public String seleccion(String s) {
-        switch ("s"){
+        switch (s){
             case "0":
                 return "n";
             case "1":
@@ -86,7 +85,7 @@ public class MenuGCoches extends Menu{
 
     public void MostrarDetallesCoche(){
         Coche coche = idCoche();
-        if (coche != null){coche.getInfo();}
+        if (coche != null){System.out.println(coche.getInfo());}
         else{System.out.println("No existe ese coche");}
     }
 
@@ -95,7 +94,14 @@ public class MenuGCoches extends Menu{
         Integer aumento = solicitarInfoI("la cantidad de stock que quiera aumentar");
         if(aumento > 0){
             coche.aumentarStock(aumento);
+            System.out.println(coche.getInfo());
         }
         else{System.out.println("Ese aumento no es válido, debe ser mayor que 0");}
+    }
+    @Override
+    public void ejecutar(){
+        seccion = buscarSeccion();
+        if(seccion != null){super.ejecutar();}
+        else{System.out.println("No existe el seccion");}
     }
 }

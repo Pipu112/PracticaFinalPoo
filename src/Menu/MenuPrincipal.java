@@ -46,7 +46,7 @@ public class MenuPrincipal extends Menu{
             menus.get(i-1).ejecutar();
             return "s";}
         else if ((i<0)||(i>menus.size())){
-            System.out.println("opción no válida. Inténtelo de nuevo");
+            System.out.println("Opción no válida. Inténtelo de nuevo");
             return "s";}
         else
             return "n";

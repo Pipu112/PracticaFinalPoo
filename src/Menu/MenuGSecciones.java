@@ -5,8 +5,6 @@ import Modelo.GestionableIdString;
 import Modelo.IdString;
 import Modelo.Seccion;
 
-import java.util.ArrayList;
-
 public class MenuGSecciones extends Menu{
 
     public MenuGSecciones(Concesionario c) {
@@ -31,6 +29,7 @@ public class MenuGSecciones extends Menu{
         //no funciona que te devuelva la seccion
         if(o != null){
             g.baja(o);
+            System.out.println("La seccion "+(Seccion)o+" se ha eliminado");
         }
         else{
             System.out.println("No se ha podido dar de baja esa seccion ya que no existe");
@@ -43,9 +42,14 @@ public class MenuGSecciones extends Menu{
 
     public void mostrar(GestionableIdString g){
         IdString c;
-        for(int i = 0; i< g.numeroElementos(); i++){
-            c= recuperarIdSR(g, i);
-            System.out.println(c.getInfo());
+        if(g.numeroElementos() == 0){
+            System.out.println("No hay secciones añadidas");
+        }
+        else {
+            for (int i = 0; i < g.numeroElementos(); i++) {
+                c = recuperarIdSR(g, i);
+                System.out.println(c.getInfo());
+            }
         }
     }
 
@@ -87,11 +91,4 @@ public class MenuGSecciones extends Menu{
             }
         } return "";
     }
-    public void agregarCoche(){
-        String res = solicitarInfoS("si desea entrar en el menú de coches para gestionar los coches de esta seccion");
-        if (res == "s"){
-
-        }
-    }
-
 }

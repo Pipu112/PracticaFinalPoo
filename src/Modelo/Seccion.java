@@ -14,7 +14,7 @@ public class Seccion implements IdString {
     }
     @Override
     public String getID() {
-        return "El Id es: "+id;
+        return id;
     }
 
     @Override
