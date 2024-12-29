@@ -1,52 +1,58 @@
 package Menu;
 
 import Modelo.*;
-import Modelo.Producto;
 
-import java.util.ArrayList;
-
-public class MenuGCoches extends MenuPrincipal {
+public class MenuGCoches extends Menu {
     Seccion seccion;
 
-    public MenuGCoches(Concesionario c){
+    public MenuGCoches(Concesionario c) {
         super(c);
     }
 
-    public Seccion buscarSeccion(){
+    public Seccion buscarSeccion() {
         String idSeccion = solicitarInfoS("el id de la seccion quieres gestionar los coches: ");
-        Seccion seccionARecuperar = (Seccion) recuperarIdSR((GestionableIdString) getGestionable(0),idSeccion);
-        if(seccionARecuperar == null){
+        Seccion seccionARecuperar = (Seccion) recuperarIdSR((GestionableIdString) getGestionable(0), idSeccion);
+        if (seccionARecuperar == null) {
             System.out.println("La seccion no existe");
             return null;
+        } else {
+            return (seccionARecuperar);
         }
-        else{return (seccionARecuperar);}
     }
-    public IdString recuperarIdSR(GestionableIdString g, String id){return g.buscar(id);}
 
-    public Coche idCoche(){
+    public IdString recuperarIdSR(GestionableIdString g, String id) {
+        return g.buscar(id);
+    }
+
+    public Coche idCoche() {
         String id = solicitarInfoS("el id del coche"); //pone en total Introduzca la seccion
         Coche coche = seccion.buscarCoche(id);
         return coche;
     }
 
-    public void agregar(){
-        String id = solicitarInfoS("el id del coche"); //pone en total Introduzca la seccion
+    public void agregar() {
+        String id = crearIdCoche();
         Coche coche = seccion.buscarCoche(id);
-        if (coche == null){
-            double PrecioBase = solicitarInfoD("el precio de la seccion");
+        if (coche == null) {
+            double PrecioBase = solicitarInfoD("el precio del coche");
             Integer Stock = solicitarInfoI("el stock");
-            Coche co = new Coche(id, PrecioBase,Stock);
+            Coche co = new Coche(id, PrecioBase, Stock);
             seccion.altaCoche(co);
-        }
-        else System.out.println("Ya existe una seccion con ese id");
+        } else System.out.println("Ya existe una seccion con ese id");
     }
-
-    public void mostrarTodosLosCoches(){
-        for(int i = 0; i< seccion.numeroElementos(); i++){
+    public String crearIdCoche(){
+        String modelo = solicitarInfoS("el modelo del coche");
+        String ano = solicitarInfoS("el año de fabricación del coche");
+        String id = modelo+"-"+ano;
+        return id;
+    }
+    public void mostrarTodosLosCoches() {
+        for (int i = 0; i < seccion.numeroElementos(); i++) {
             Coche coche = (Coche) seccion.recuperar(i);
             System.out.println(coche.getInfo());
         }
     }
+
     @Override
     public void mostrarOpcion() {
         System.out.println("2.Gestión de coches de una seccion");
@@ -64,7 +70,7 @@ public class MenuGCoches extends MenuPrincipal {
 
     @Override
     public String seleccion(String s) {
-        switch (s){
+        switch (s) {
             case "0":
                 return "n";
             case "1":
@@ -83,25 +89,33 @@ public class MenuGCoches extends MenuPrincipal {
         return "";
     }
 
-    public void MostrarDetallesCoche(){
+    public void MostrarDetallesCoche() {
         Coche coche = idCoche();
-        if (coche != null){System.out.println(coche.getInfo());}
-        else{System.out.println("No existe ese coche");}
+        if (coche != null) {
+            System.out.println(coche.getInfo());
+        } else {
+            System.out.println("No existe ese coche");
+        }
     }
 
-    public void aumentarStockCoche(){
+    public void aumentarStockCoche() {
         Coche coche = idCoche();
         Integer aumento = solicitarInfoI("la cantidad de stock que quiera aumentar");
-        if(aumento > 0){
+        if (aumento > 0) {
             coche.aumentarStock(aumento);
             System.out.println(coche.getInfo());
+        } else {
+            System.out.println("Ese aumento no es válido, debe ser mayor que 0");
         }
-        else{System.out.println("Ese aumento no es válido, debe ser mayor que 0");}
     }
-    /*@Override
-    public void ejecutar(){
+
+    @Override
+    public void ejecutar() {
         seccion = buscarSeccion();
-        if(seccion != null){super.ejecutar();}
-        else{System.out.println("No existe el seccion");}
-    }*/
+        if (seccion != null) {
+            super.ejecutarOpciones();
+        } else {
+            System.out.println("No existe el seccion");
+        }
+    }
 }

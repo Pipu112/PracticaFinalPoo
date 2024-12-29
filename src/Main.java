@@ -1,8 +1,5 @@
 import EntradaSalida.MyInput;
-import Menu.MenuGClientes;
-import Menu.MenuGCoches;
-import Menu.MenuGSecciones;
-import Menu.MenuPrincipal;
+import Menu.*;
 import Modelo.Cliente;
 import Modelo.Coche;
 import Mejoras.LlantasAleaccion;
@@ -22,9 +19,7 @@ public class Main {
         mp.agregarMenu(new MenuGSecciones(c));
         mp.agregarMenu(new MenuGCoches(c));
         mp.agregarMenu(new MenuGClientes(c));
-        //mp.agregarMenu(new MenuGestionIdStringReserva(c, 1, MyInput.leeFichero("textoGCliente.txt"), new FactoryIdStringReserva()));
-        //mp.agregarMenu(new MenuGestionReserva(c));
-        //mp.agregarMenu(new MenuGestionEconomica(c));
+        mp.agregarMenu(new MenuGVentasIdString(c));
         mp.ejecutar();
         //MyInput.serialize(h, "fichero.dat");
     }

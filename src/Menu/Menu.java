@@ -9,6 +9,7 @@ public abstract class Menu {
     public Gestionable<?,?,?> getGestionable(int indice){
         return  c.recuperarGestionable(indice);
     }
+
     public void  ejecutar(){
         String respuesta="";
         do{
