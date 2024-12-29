@@ -1,17 +1,15 @@
-package Menu;
+package Mejoras;
 
 import EntradaSalida.MyInput;
-import Mejoras.CalefaccionAsientos;
-import Mejoras.GPS;
-import Mejoras.LlantasAleaccion;
-import Mejoras.TapiceriaCuero;
 import Modelo.Coche;
 
-public class MenuGVentas {
+public class AgregarMejoras{
     Coche coche;
-    MenuGVentas(Coche coche) {}
+    public AgregarMejoras(Coche coche) {
+        this.coche = coche;
+    }
     //implementamos la parte de las mejoras
-    private Coche agregarLlantasAleacion(Coche coche){
+    private Coche agregarLlantasAleaccion(Coche coche){
         System.out.println("¿Desea que el coche tenga Llantas de Aleación? Responda con una \"s\" si quiere la habitación con este servicio" );
         String respuesta= MyInput.readString().toLowerCase();
         if (respuesta.equals("s")) coche= new LlantasAleaccion(coche,0.05);
@@ -35,9 +33,7 @@ public class MenuGVentas {
         if (respuesta.equals("s")) coche= new TapiceriaCuero(coche,0.05);
         return coche;
     }
-
     public Coche agregarMejoraCoche(Coche coche){
-
-        return agregarCalefaccionAsiento(agregarGPS(agregarLlantasAleacion(agregarTapiceriaCuero(coche))));
+        return agregarCalefaccionAsiento(agregarGPS(agregarLlantasAleaccion(agregarTapiceriaCuero(coche))));
     }
 }

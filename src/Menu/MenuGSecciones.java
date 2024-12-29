@@ -10,11 +10,9 @@ public class MenuGSecciones extends Menu{
     public MenuGSecciones(Concesionario c) {
         super(c);
     }
-    public IdString recuperarIdSR(GestionableIdString g, String id){return g.buscar(id);}
-    public IdString recuperarIdSR(GestionableIdString g,  int i){return  g.recuperar(i);}
 
     public void agregar(GestionableIdString g){
-        String id=solicitarInfoS("la id de la seccion"); //pone en total Introduzca la seccion
+        String id=solicitarInfoS("el id de la seccion"); //pone en total Introduzca la seccion
         IdString o= recuperarIdSR(g, id);
         if (o==null){
             String descripcion = solicitarInfoS("la descripcion de la seccion");
@@ -23,7 +21,6 @@ public class MenuGSecciones extends Menu{
         }
         else System.out.println("Ya existe una seccion con ese id");
     }
-
     public void bajaSeccion(GestionableIdString g,String id){
         IdString o= recuperarIdSR(g, id);
         //no funciona que te devuelva la seccion
@@ -38,19 +35,6 @@ public class MenuGSecciones extends Menu{
     public void eliminar(GestionableIdString g){
         String id=solicitarInfoS("El id que desea eliminar ");
         bajaSeccion(g, id);
-    }
-
-    public void mostrar(GestionableIdString g){
-        IdString c;
-        if(g.numeroElementos() == 0){
-            System.out.println("No hay secciones añadidas");
-        }
-        else {
-            for (int i = 0; i < g.numeroElementos(); i++) {
-                c = recuperarIdSR(g, i);
-                System.out.println(c.getInfo());
-            }
-        }
     }
 
     @Override

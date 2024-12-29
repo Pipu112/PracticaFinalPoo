@@ -1,8 +1,7 @@
 package Menu;
 
 import EntradaSalida.MyInput;
-import Modelo.Concesionario;
-import Modelo.Gestionable;
+import Modelo.*;
 
 public abstract class Menu {
     private Concesionario c;
@@ -37,6 +36,21 @@ public abstract class Menu {
         System.out.println("Introduzca "+ cad);
         return MyInput.readInt();
     }
+    public void mostrar(GestionableIdString g){
+        IdString c;
+        if(g.numeroElementos() == 0){
+            System.out.println("No hay secciones añadidas");
+        }
+        else {
+            for (int i = 0; i < g.numeroElementos(); i++) {
+                c = recuperarIdSR(g, i);
+                System.out.println(c.getInfo());
+            }
+        }
+    }
+    public IdString recuperarIdSR(GestionableIdString g, String id){return g.buscar(id);}
+    public IdString recuperarIdSR(GestionableIdString g,  int i){return  g.recuperar(i);}
+
     public abstract void mostrarOpcion();
     public abstract void mostrarOpciones();
     public abstract String seleccion(String s);

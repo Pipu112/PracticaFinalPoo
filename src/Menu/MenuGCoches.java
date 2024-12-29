@@ -5,7 +5,7 @@ import Modelo.Producto;
 
 import java.util.ArrayList;
 
-public class MenuGCoches extends MenuPrincipal{
+public class MenuGCoches extends MenuPrincipal {
     Seccion seccion;
 
     public MenuGCoches(Concesionario c){
@@ -98,10 +98,10 @@ public class MenuGCoches extends MenuPrincipal{
         }
         else{System.out.println("Ese aumento no es válido, debe ser mayor que 0");}
     }
-    @Override
+    /*@Override
     public void ejecutar(){
         seccion = buscarSeccion();
         if(seccion != null){super.ejecutar();}
         else{System.out.println("No existe el seccion");}
-    }
+    }*/
 }

@@ -1,4 +1,5 @@
 import EntradaSalida.MyInput;
+import Menu.MenuGClientes;
 import Menu.MenuGCoches;
 import Menu.MenuGSecciones;
 import Menu.MenuPrincipal;
@@ -20,6 +21,7 @@ public class Main {
         MenuPrincipal mp= new MenuPrincipal(c);
         mp.agregarMenu(new MenuGSecciones(c));
         mp.agregarMenu(new MenuGCoches(c));
+        mp.agregarMenu(new MenuGClientes(c));
         //mp.agregarMenu(new MenuGestionIdStringReserva(c, 1, MyInput.leeFichero("textoGCliente.txt"), new FactoryIdStringReserva()));
         //mp.agregarMenu(new MenuGestionReserva(c));
         //mp.agregarMenu(new MenuGestionEconomica(c));
