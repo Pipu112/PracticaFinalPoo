@@ -25,7 +25,7 @@ public class VentaCoche extends Venta {
     //mejoras aplicadas
     @Override
     public String getInfo() {
-        return super.getInfo()+" el coste final es: "+coche.getCoste();
+        return super.getInfo()+"la informacion del coche es: "+coche.getInfo()+" el coste final es: "+coche.getCoste();
     }
     @Override
     public double getCosteProducto(){

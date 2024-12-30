@@ -20,7 +20,7 @@ public abstract class Venta implements IdString{
 
     @Override
     public String getInfo() {
-        return "Los datos del cliente son: " + cliente.getInfo()+" la fecha de venta es "+fechaI;
+        return "el id de la venta es: "+id+"Los datos del cliente son: " + cliente.getInfo()+" \nla fecha de venta es "+fechaI;
     }
     public LocalDate getFecha(){return fechaI;}
     public Cliente getCliente(){return cliente;}

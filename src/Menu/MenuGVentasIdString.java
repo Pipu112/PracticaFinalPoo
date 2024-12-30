@@ -43,37 +43,39 @@ public class MenuGVentasIdString extends Menu{
         }
         return "";
     }
-
     public void registrarVenta(GestionableIdString g){
         String idVenta = generaId(g);
 
-        Coche coche = BuscarCoche(g);
+        Coche coche = BuscarCoche((GestionableIdString) getGestionable(0));
         if(coche == null){System.out.println("El id del coche no existe");}
         else{
-            String fe = solicitarInfoS("la fecha de la compra del coche");
+            String fe = solicitarInfoS("la fecha de la compra del coche en formato AAAA-MM-DD");
             LocalDate fecha = crearFechaVenta();
             Cliente cliente = mostrarCliente(g);
-            AgregarMejoras agregarMejora = new AgregarMejoras(coche);
-            VentaCoche venta = new VentaCoche(idVenta,cliente,agregarMejora.agregarMejoraCoche(coche),fecha);
+            if(cliente != null){
+                AgregarMejoras agregarMejora = new AgregarMejoras(coche);
+                VentaCoche venta = new VentaCoche(idVenta,cliente,agregarMejora.agregarMejoraCoche(coche),fecha);
+                System.out.println("La informacion de la nueva venta es: \n"+venta.getInfo());
+                g.alta(venta);
+            }
+
         }
-
-
     }
 
     public Coche BuscarCoche(GestionableIdString g){
         String idSeccion = solicitarInfoS("el id de la seccion de la que quiere comprar el coche");
         Seccion s = (Seccion) recuperarIdSR(g,idSeccion);
-        String idCoche = solicitarInfoS("el id del coche que quiere comprar");
-        for(int i=0; i<s.numeroElementos();i++){
-            if(idCoche.equals(s.recuperar(i))){
-                return (Coche) s.recuperar(i);
-            }
+        if(s == null){System.out.println("La seccion no existe");}
+        else{
+            String idCoche = solicitarInfoS("el id del coche que quiere comprar");
+            Coche c = s.buscarCoche(idCoche);
+            if(c != null){return c;}
         }
         return null;
     }
     public Cliente mostrarCliente(GestionableIdString g){
         String dni = solicitarInfoS("el dni del cliente a compar el coche");
-        Cliente s =(Cliente) recuperarIdSR(g,dni);
+        Cliente s =(Cliente) recuperarIdSR((GestionableIdString) getGestionable(1),dni);
         if(s == null){
             System.out.println("El cliente, no existe, si desea crearlo, vuelva al menú de clientes");
             return null;
@@ -92,15 +94,24 @@ public class MenuGVentasIdString extends Menu{
             return crearFechaVenta();
         }
     }
+
     //creo que aqui no me sumará un numero
     public String generaId(GestionableIdString g){
+        String num;
         VentaCoche v = (VentaCoche)recuperarIdSR(g,g.numeroElementos());
-        String num = v.getUltimoNumeroId().toString();
-        num += 1;
-        while(num.length()<9){
-            num="0"+num;
+        if(v == null){
+            return "000000000";
         }
-        return num;
+        else{
+            num = v.getUltimoNumeroId().toString();
+            num += 1;
+            while(num.length()<9){
+                num="0"+num;
+            }
+            return num;
+        }
+
+
     }
 
 
