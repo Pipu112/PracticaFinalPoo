@@ -80,10 +80,9 @@ public class MenuGVentasIdString extends Menu{
             System.out.println("El cliente, no existe, si desea crearlo, vuelva al menú de clientes");
             return null;
         }
-        else{
-            return s;
-        }
+        else{return s;}
     }
+
     public LocalDate crearFechaVenta(){
         System.out.println("introduzca la fecha de compra del coche en formato AAAA-MM-DD");
         String f=MyInput.readString();
@@ -94,7 +93,6 @@ public class MenuGVentasIdString extends Menu{
             return crearFechaVenta();
         }
     }
-
     //creo que aqui no me sumará un numero
     public String generaId(GestionableIdString g){
         String num;
@@ -110,30 +108,27 @@ public class MenuGVentasIdString extends Menu{
             }
             return num;
         }
-
-
     }
-
-
     //ya está bien
     public void MostrarInfoVenta(GestionableIdString g){
         String idVenta = solicitarInfoS("el id del venta");
-        Venta v = (Venta) recuperarIdSR(g,idVenta);
-        v.getInfo();
+        VentaCoche v = (VentaCoche) recuperarIdSR(g,idVenta);
+        System.out.println(v.getInfo());
     }
+
     public void MostrarVentasCliente(GestionableIdString g){
         String dni = solicitarInfoS("el DNI del cliente");
-        Cliente c = (Cliente) recuperarIdSR((GestionableIdString) getGestionable(2),dni);
+        Cliente c = (Cliente) recuperarIdSR((GestionableIdString) getGestionable(1),dni);
         if(c == null){
             System.out.println("El cliente no existe");
         }
         else{
-            mostrarVentasCliente(c,g);
+            VentasCliente(c,g);
         }
     }
-    public void mostrarVentasCliente(Cliente c,GestionableIdString g){
+    public void VentasCliente(Cliente c,GestionableIdString g){
         for(int i = 0; i <g.numeroElementos(); i++){
-            Venta venta = (Venta) g;
+            Venta venta = (Venta) recuperarIdSR(g,i);
             Cliente clienteVenta = venta.getCliente();
             if(clienteVenta.getID().equals(c.getID())){
                 System.out.println("\n"+venta.getInfo());

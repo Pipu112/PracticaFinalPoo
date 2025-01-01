@@ -38,6 +38,7 @@ public class MenuGCoches extends Menu {
             Integer Stock = solicitarInfoI("el stock");
             Coche co = new Coche(id, PrecioBase, Stock);
             seccion.altaCoche(co);
+            System.out.println("El id del coche es: "+co.getID());
         } else System.out.println("Ya existe una seccion con ese id");
     }
     public String crearIdCoche(){
@@ -113,7 +114,10 @@ public class MenuGCoches extends Menu {
     public void ejecutar() {
         seccion = buscarSeccion();
         if (seccion != null) {
-            super.ejecutarOpciones();
+            String respuesta="";
+            do{
+                respuesta= ejecutarOpciones();
+            }while(respuesta.equals("s"));
         } else {
             System.out.println("No existe el seccion");
         }

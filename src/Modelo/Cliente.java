@@ -4,7 +4,7 @@ public class Cliente implements IdString {
     private String dni;
     private String nombre;
     private String telefono;
-    private boolean recibirInfo;
+    private String recibirInfo;
 
     public Cliente(String DNI, String Nombre, String Telefono, String RecibirInfo) {
         this.dni = DNI;
@@ -19,11 +19,12 @@ public class Cliente implements IdString {
     public String getInfo() {
         return "DNI: "+ dni + " nombre: "+ nombre+" teléfono: "+telefono+" desea recibir informacion "+recibirInfo;
     }
-    public boolean DeseaRecibirInfo(String Recibir){
+
+    public String DeseaRecibirInfo(String Recibir){
         if (Recibir.equals("s")){
-            return true;
+            return "si";
         }
-        else{return false;}
+        else{return "no";}
     }
 
 }
