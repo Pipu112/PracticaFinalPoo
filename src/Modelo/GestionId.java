@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GestionId implements GestionableIdString {
+public class GestionId implements GestionableIdString, Serializable {
     private ArrayList<IdString> lista;
 
     public GestionId(){

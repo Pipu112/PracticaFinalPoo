@@ -20,10 +20,6 @@ public class MenuGCoches extends Menu {
         }
     }
 
-    public IdString recuperarIdSR(GestionableIdString g, String id) {
-        return g.buscar(id);
-    }
-
     public Coche idCoche() {
         String id = solicitarInfoS("el id del coche"); //pone en total Introduzca la seccion
         Coche coche = seccion.buscarCoche(id);

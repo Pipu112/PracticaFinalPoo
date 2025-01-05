@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Concesionario {
+public class Concesionario implements Serializable {
     private ArrayList<Gestionable<?,?,?>> lista;
 
     public Concesionario(){

@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Seccion implements IdString {
+public class Seccion implements IdString, Serializable {
     private String id;
     private String descripcionSeccion;
     private ArrayList<Producto> productos;

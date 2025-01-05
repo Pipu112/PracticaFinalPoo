@@ -1,6 +1,8 @@
 package Modelo;
 
-public class Producto implements IdString{
+import java.io.Serializable;
+
+public class Producto implements IdString, Serializable {
     private String id;
     private double PrecioBase;
     private Integer Stock;

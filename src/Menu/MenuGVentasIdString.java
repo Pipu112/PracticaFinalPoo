@@ -4,6 +4,7 @@ import EntradaSalida.MyInput;
 import Mejoras.*;
 import Modelo.*;
 import java.time.LocalDate;
+import java.util.Random;
 
 public class MenuGVentasIdString extends Menu{
 
@@ -52,9 +53,11 @@ public class MenuGVentasIdString extends Menu{
             String fe = solicitarInfoS("la fecha de la compra del coche en formato AAAA-MM-DD");
             LocalDate fecha = crearFechaVenta();
             Cliente cliente = mostrarCliente(g);
+
             if(cliente != null){
                 AgregarMejoras agregarMejora = new AgregarMejoras(coche);
-                VentaCoche venta = new VentaCoche(idVenta,cliente,agregarMejora.agregarMejoraCoche(coche),fecha);
+                String matricula = generarMatricula();
+                VentaCoche venta = new VentaCoche(idVenta,cliente,agregarMejora.agregarMejoraCoche(coche),fecha,matricula);
                 System.out.println("La informacion de la nueva venta es: \n"+venta.getInfo());
                 g.alta(venta);
             }
@@ -98,7 +101,7 @@ public class MenuGVentasIdString extends Menu{
         String num;
         VentaCoche v = (VentaCoche)recuperarIdSR(g,g.numeroElementos());
         if(v == null){
-            return "000000000";
+            return "000000001";
         }
         else{
             num = v.getUltimoNumeroId().toString();
@@ -130,9 +133,26 @@ public class MenuGVentasIdString extends Menu{
         for(int i = 0; i <g.numeroElementos(); i++){
             Venta venta = (Venta) recuperarIdSR(g,i);
             Cliente clienteVenta = venta.getCliente();
+
             if(clienteVenta.getID().equals(c.getID())){
                 System.out.println("\n"+venta.getInfo());
             }
         }
     }
+    private String generarMatricula() {
+        StringBuilder codigo = new StringBuilder();
+        Random rnd = new Random();
+        // Generar 4 digitos numericos
+        for (int i = 0; i < 4; i++) {
+            codigo.append(rnd.nextInt(9));
+        }
+        // Generar 3 letras aleatorias sin vocales
+        String consonantes = "BCDFGHJKLMNPRSTVWXYZ";
+        for (int i = 0; i < 3; i++) {
+            char letter = consonantes.charAt(rnd.nextInt(consonantes.length()));
+            codigo.append(letter);
+        }
+        return codigo.toString();
+    }
+
 }

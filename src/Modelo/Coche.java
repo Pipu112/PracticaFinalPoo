@@ -2,7 +2,6 @@ package Modelo;
 
 public class Coche extends Producto implements IdString{
     private String modelo;
-    private int annoFabricacion;
     public Coche(String id, double PrecioBase, Integer Stock) {
         super(id, PrecioBase, Stock);
     }

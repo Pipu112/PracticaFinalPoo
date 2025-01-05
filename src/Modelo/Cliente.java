@@ -1,6 +1,8 @@
 package Modelo;
 
-public class Cliente implements IdString {
+import java.io.Serializable;
+
+public class Cliente implements IdString, Serializable {
     private String dni;
     private String nombre;
     private String telefono;

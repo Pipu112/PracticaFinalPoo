@@ -1,9 +1,10 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Venta implements IdString{
+public abstract class Venta implements IdString, Serializable {
     private String id;
     private Cliente cliente;
     private LocalDate fechaI;

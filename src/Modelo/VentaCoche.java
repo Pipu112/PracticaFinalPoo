@@ -8,30 +8,30 @@ import java.util.ArrayList;
 public class VentaCoche extends Venta {
     private Mejora mejora;
     private Coche coche;
+    private String matricula;
     private ArrayList<Venta> ventas= new ArrayList<Venta>();
     //la venta de coche tiene que tener como entrada id venta, datos coche, mejoras,fecha venta
-    public VentaCoche(String id, Cliente cliente, Coche coche,LocalDate fechaI) {
+    public VentaCoche(String id, Cliente cliente, Coche coche,LocalDate fechaI, String matricula) {
         super(id, cliente, fechaI);
         this.coche = coche;
+        this.matricula = matricula;
     }
     public Integer getUltimoNumeroId(){
         if(ventas.isEmpty())
             return 1;
         else{
             Venta r=ventas.get(ventas.size()-1);
-            int i= r.getID().lastIndexOf("R");
-            return Integer.parseInt(r.getID().substring(i+2))+1;}
+            return Integer.parseInt(r.getID().substring(2))+1;}
     }
     //mejoras aplicadas
     @Override
     public String getInfo() {
-        return super.getInfo()+"la informacion del coche es: "+coche.getInfo()+" el coste final es: "+coche.getCoste();
+        return super.getInfo()+"\nLa información del coche es: "+coche.getInfo()+" el coste final es: "+coche.getCoste()
+                +"la matrícula es: "+matricula;
     }
     @Override
     public double getCosteProducto(){
         return coche.getCoste();
-        //tengo que poner el coste de la decoracion del coche, no solo del coche
-        //no se hacerlo
     }
     @Override
     public void agregar(Venta r){
@@ -57,5 +57,4 @@ public class VentaCoche extends Venta {
         double precioIVA = coche.getCoste()*0.21;
         return coche.getCoste()*precioIVA;
     }
-
 }

@@ -11,16 +11,18 @@ import Modelo.GestionId;
 public class Main {
     public static void main(String[] args) {
 
-        Concesionario c = new Concesionario();
-        for(int i=0;i<3;i++)
-            c.agregarGestionable(new GestionId());
-
+        Concesionario c= MyInput.deserialize("ficheroConcesionario.dat");
+        if(c==null) {
+            c = new Concesionario();
+            for(int i=0;i<3;i++)
+                c.agregarGestionable(new GestionId());
+        }
         MenuPrincipal mp= new MenuPrincipal(c);
         mp.agregarMenu(new MenuGSecciones(c));
         mp.agregarMenu(new MenuGCoches(c));
         mp.agregarMenu(new MenuGClientes(c));
         mp.agregarMenu(new MenuGVentasIdString(c));
         mp.ejecutar();
-        //MyInput.serialize(h, "fichero.dat");
+        MyInput.serialize(c, "ficheroConcesionario.dat");
     }
 }
