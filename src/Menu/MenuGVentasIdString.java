@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class MenuGVentasIdString extends Menu{
-
-    public MenuGVentasIdString(Concesionario c) {super(c);}
+    Concesionario c;
+    public MenuGVentasIdString(Concesionario c) {super(c); this.c = c;}
 
     @Override
     public void mostrarOpcion() {
@@ -58,7 +58,7 @@ public class MenuGVentasIdString extends Menu{
                 AgregarMejoras agregarMejora = new AgregarMejoras(coche);
                 String matricula = generarMatricula();
                 VentaCoche venta = new VentaCoche(idVenta,cliente,agregarMejora.agregarMejoraCoche(coche),fecha,matricula);
-                System.out.println("La informacion de la nueva venta es: \n"+venta.getInfo());
+                System.out.println("La información de la nueva venta es: \n"+venta.getInfo());
                 g.alta(venta);
             }
 
@@ -96,23 +96,28 @@ public class MenuGVentasIdString extends Menu{
             return crearFechaVenta();
         }
     }
-    //creo que aqui no me sumará un numero
+
     public String generaId(GestionableIdString g){
-        String num;
-        VentaCoche v = (VentaCoche)recuperarIdSR(g,g.numeroElementos());
+        Integer num;
+        VentaCoche v = (VentaCoche)recuperarIdSR(g,g.numeroElementos()-1);
         if(v == null){
             return "000000001";
         }
         else{
-            num = v.getUltimoNumeroId().toString();
-            num += 1;
-            while(num.length()<9){
-                num="0"+num;
+            try{
+                num = Integer.valueOf(v.getID());
+                num += 1;
+                String numString = num.toString();
+                while(numString.length()<9){
+                    numString="0"+numString;
+                }
+                return numString;
+            }catch(NumberFormatException e){
+                System.out.println("El id de la venta no es correcto");
+                return null;
             }
-            return num;
         }
     }
-    //ya está bien
     public void MostrarInfoVenta(GestionableIdString g){
         String idVenta = solicitarInfoS("el id del venta");
         VentaCoche v = (VentaCoche) recuperarIdSR(g,idVenta);
